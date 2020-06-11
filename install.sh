@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 GITHUB_URL=https://github.com/ishota/dotfiles
-DOTPATH=~/.dotfiles
+DOTPATH=~/dotfiles
 
 # git が使えるなら git
 if has "git"; then

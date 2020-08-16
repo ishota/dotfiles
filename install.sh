@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 GITHUB_URL=https://github.com/ishota/dotfiles
-DOTPATH=~/dotfiles
+DOT_PATH=~/dotfiles
+DOT_FILES={.vimrc}
 
 # git が使えるなら git
 if type "git"; then
-    git clone --recursive "$GITHUB_URL" "$DOTPATH"
+    git clone --recursive "$GITHUB_URL" "$DOT_PATH"
 
 # 使えない場合は curl か wget を使用する
 elif type "curl" || has "wget"; then
@@ -20,22 +21,22 @@ elif type "curl" || has "wget"; then
 
     fi | tar zxv
 
-    # 解凍したら，DOTPATH に置く
-    mv -f dotfiles-master "$DOTPATH"
+    # 解凍したら，DOT_PATH に置く
+    mv -f dotfiles-master "$DOT_PATH"
 
 else
-    die "curl or wget required"
+    die "git, curl or wget required"
 fi
 
 cd ~/dotfiles
+
+# 移動できなかったら終了
 if [ $? -ne 0 ]; then
-    die "not found: $DOTPATH"
+    die "not found: $DOT_PATH"
 fi
 
-# 移動できたらリンクを実行する
-for f in .??*
+# 移動できたらシンボリックリンクを作成する
+for file in ${DOT_FILES[@]}
 do
-    [ "$f" = ".git" ] && continue
-
-    ln -snfv "$DOTPATH/$f" "$HOME/$f"
+    ln -snfv $DOT_PATH/$file $HOME/$file
 done

@@ -38,5 +38,5 @@ fi
 # 移動できたらシンボリックリンクを作成する
 for file in ${DOT_FILES[@]}
 do
-    ln -snfv $DOT_PATH/$file $HOME/$file
+    ln -snfv "$DOT_PATH/$file" "$HOME/$file"
 done

@@ -2,7 +2,7 @@
 
 GITHUB_URL=https://github.com/ishota/dotfiles
 DOT_PATH=~/dotfiles
-DOT_FILES={.vimrc}
+DOT_FILES=(.vimrc)
 
 # git が使えるなら git
 if type "git"; then
